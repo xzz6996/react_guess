@@ -1,42 +1,84 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+
 import reportWebVitals from "./reportWebVitals";
 
-function tick() {
-  const element = (
-    <div>
-      <h1>hello world this is function tick , use ReactDom.render</h1>
-      <h2>it is {new Date().toLocaleString()}</h2>
-    </div>
-  );
-  ReactDOM.render(element,document.querySelector('#root'))
-}
-setInterval(tick,1000)
+// function tick() {
+//   const element = (
+//     <div>
+//       <h1>hello world this is function tick , use ReactDom.render</h1>
+//       <h2>it is {new Date().toLocaleString()}</h2>
+//     </div>
+//   );
+//   ReactDOM.render(element,document.querySelector('#root'))
+// }
+// setInterval(tick,1000)
 
-class Board extends React.Component {
-  renderSquare() {}
-  render() {
-    return;
+
+
+
+
+
+class Toggle extends React.Component{
+  constructor(props){
+    super(props)
+    this.state={isToggleOn:true}
+    this.handleClick = this.handleClick.bind(this)
+  }
+  handleClick(){
+    this.setState(state => ({
+      isToggleOn: !state.isToggleOn
+    }))
+  }
+
+  render(){
+    return (
+      <a href="#" onClick={this.handleClick}>
+        {this.state.isToggleOn?'on':'false'}
+      </a>
+    )
   }
 }
 
-class Game extends React.Component {
+class Clock1 extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { date: new Date() };
+  }
+  componentDidMount() {
+    this.timerID = setInterval(() => {
+      this.tick()
+    })
+  }
+  tick() {
+    this.setState({
+      date: new Date()
+    })
+  }
+  componentWillUnmount() {
+    clearInterval(this.timerID)
+  }
   render() {
     return (
-      <div className="game">
-        <div className="game-board">
-          <Board />
-        </div>
+      <div>
+        <h1>hello world</h1>
+        <h2>{this.state.date.toLocaleTimeString()}</h2>
+        <Toggle />
       </div>
     );
   }
 }
 
+
+
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Clock1 />
+    <Clock1 />
+    <Clock1 />
+    <Clock1 />
   </React.StrictMode>,
   document.getElementById("root")
 );
