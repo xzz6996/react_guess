@@ -12,23 +12,45 @@ function ActionLink() {
   );
 }
 
-
-class Toggle extends React.Component{
-  constructor(props){
+class Toggle extends React.Component {
+  constructor(props) {
     super(props)
-    this.state={isToggleOn:true}
+    this.state = { IsToggel: false }
+    this.change = this.change.bind(this)
+  }
+  change() {
+    this.setState(state => {
+      IsToggel: !state.IsToggel
+    })
+  }
+  render() {
+    return (
+      <div onClick={change} >
+        {IsToggel}
+      </div>
+    )
+  }
+}
+
+
+
+
+class Toggle extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { isToggleOn: true }
     this.handleClick = this.handleClick.bind(this)
   }
-  handleClick(){
-    this.setState(state=>{
-      isToggleOn:!state.isToggleOn
+  handleClick() {
+    this.setState(state => {
+      isToggleOn: !state.isToggleOn
     })
   }
 
-  render(){
+  render() {
     return (
       <a href="#" onClick={handleClick}>
-        {this.state.isToggleOn?'on':'false'}
+        {this.state.isToggleOn ? 'on' : 'false'}
       </a>
     )
   }

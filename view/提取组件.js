@@ -22,7 +22,7 @@ function Avatar(props) {
 
 function UserInfo(props) {
   return <div className="UserInfo">
-      <div className="UserInfo-name">{props.author.name}</div>
-      <Avatar user={props.user}/>
+    <div className="UserInfo-name">{props.author.name}</div>
+    <Avatar user={props.user} />
   </div>
 }
